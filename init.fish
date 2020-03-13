@@ -27,12 +27,9 @@ if command -s pipenv > /dev/null
 
 
 
-        if not test -n "$parent_found"
-            if not string match -q "$__pipenv_fish_initial_pwd"/'*' "$PWD/"
-                set -U __pipenv_fish_final_pwd "$PWD"
-                exit
-            end
-            return
+        if not test -n "$parent_found" && not string match -q "$__pipenv_fish_initial_pwd"/'*' "$PWD/"
+            set -U __pipenv_fish_final_pwd "$PWD"
+            exit
         end
         
         if not test -n "$PIPENV_ACTIVE"
